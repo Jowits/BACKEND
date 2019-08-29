@@ -4,7 +4,7 @@ class Api::V1::CatsController < ApplicationController
         cat.user = @current_user
         if cat.valid?
             cat.save
-            render json: catt, status: :created
+            render json: cat, status: :created
 
         else
             render json: { errors: cat.errors.full_messages }, status: :not_accepted
@@ -17,7 +17,7 @@ class Api::V1::CatsController < ApplicationController
 
     def show
         cat = Cat.find(params[:id])
-        render json: { post: CatSerializer.new(cat) }
+        render json: { cat: CatSerializer.new(cat) }
     end
 
     def destroy

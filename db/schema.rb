@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_28_090107) do
+ActiveRecord::Schema.define(version: 2019_08_29_082224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,21 @@ ActiveRecord::Schema.define(version: 2019_08_28_090107) do
     t.index ["user_id"], name: "index_cats_on_user_id"
   end
 
+  create_table "meet_ups", force: :cascade do |t|
+    t.bigint "cat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cat_id"], name: "index_meet_ups_on_cat_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "text"
+    t.bigint "cat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cat_id"], name: "index_reviews_on_cat_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -35,4 +50,6 @@ ActiveRecord::Schema.define(version: 2019_08_28_090107) do
   end
 
   add_foreign_key "cats", "users"
+  add_foreign_key "meet_ups", "cats"
+  add_foreign_key "reviews", "cats"
 end
