@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_many :cats
-    has_many :reviews, through: :cats
+    has_many :reviews
     has_many :meet_ups, through: :cats
 
 

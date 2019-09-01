@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     namespace :v1 do
         resources :users, only: [:create, :show, :index, :destroy]
         resources :cats, only: [:create, :show, :index, :destroy]
+        resources :reviews, only: [:create, :show, :index, :destroy]
+        resources :meet_ups, only: [:create, :show, :index, :destroy]
         post '/login', to: 'auth#create'
         get '/validate', to: 'auth#validate'
     end

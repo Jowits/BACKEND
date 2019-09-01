@@ -1,3 +1,3 @@
 class MeetupSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :cat_id
 end
