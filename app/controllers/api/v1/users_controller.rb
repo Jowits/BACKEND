@@ -15,6 +15,11 @@ class Api::V1::UsersController < ApplicationController
         render json: { user: UserSerializer.new(user) }
     end
 
+    def show_user_cats
+        cats = User.find(params[:id]).cats
+        render json: cats
+    end
+
     def index
         render json: User.all
     end
