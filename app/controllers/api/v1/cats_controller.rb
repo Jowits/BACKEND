@@ -24,6 +24,9 @@ class Api::V1::CatsController < ApplicationController
 
     def destroy
         cat = Cat.find(params[:id])
+        cat.destroy
+
+        render json: { deleted_cat_id: cat.id }
     end
 
     private
