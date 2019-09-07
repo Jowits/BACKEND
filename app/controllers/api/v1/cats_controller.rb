@@ -15,8 +15,11 @@ class Api::V1::CatsController < ApplicationController
         render json: Cat.all
     end
 
-  
-
+    def update
+        @cat.update(cat_params)
+        render json: @cat
+    end 
+    
     def show
         cat = Cat.find(params[:id])
         render json: { cat: CatSerializer.new(cat) }

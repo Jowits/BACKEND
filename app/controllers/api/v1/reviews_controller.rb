@@ -5,12 +5,12 @@ class Api::V1::ReviewsController < ApplicationController
                 if review.valid?
                     review.save
                     render json: review, status: :created
-        
+
                 else
                     render json: { errors: review.errors.full_messages }, status: :not_accepted
                 end
             end
-        
+            
             def index
                 render json: Review.all
             end
