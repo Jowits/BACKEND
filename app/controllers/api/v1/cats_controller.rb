@@ -15,9 +15,16 @@ class Api::V1::CatsController < ApplicationController
         render json: Cat.all
     end
 
+    def edit 
+        @cat=Cat.find params[:id]
+        render json: cat 
+    end 
+
     def update
-        @cat.update(cat_params)
-        render json: @cat
+        @cat=Cat.find params[:id]
+        if @cat.update(cat_params)
+            render json: @cat
+        end
     end 
     
     def show

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         resources :users, only: [:create, :show, :index, :destroy]
         resources :cats, only: [:create, :show, :index, :update, :destroy]
         resources :reviews, only: [:create, :show, :index, :destroy]
-        resources :meet_ups, only: [:create, :show, :index, :destroy]
+        resources :meet_ups, only: [:index]
         post '/login', to: 'auth#create'
         get '/validate', to: 'auth#validate'
     end
