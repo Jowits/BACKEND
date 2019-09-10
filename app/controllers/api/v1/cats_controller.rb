@@ -1,13 +1,13 @@
 class Api::V1::CatsController < ApplicationController
     def create
-        cat = Cat.create cat_params
-        cat.user = @current_user
-        if cat.valid?
-            cat.save
-            render json: cat, status: :created
+        @cat = Cat.create cat_params
+        @cat.user = @current_user
+        if @cat.valid?
+            @cat.save
+            render json: @cat, status: :created, serializer: CatSerializer
 
         else
-            render json: { errors: cat.errors.full_messages }, status: :not_accepted
+            render json: { errors: @cat.errors.full_messages }, status: :not_accepted
         end
     end
 
@@ -17,7 +17,7 @@ class Api::V1::CatsController < ApplicationController
 
     def edit 
         @cat=Cat.find params[:id]
-        render json: cat 
+        render json: CatSerializer.new(@cat)
     end 
 
     def update
